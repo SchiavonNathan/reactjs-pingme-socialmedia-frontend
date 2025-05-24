@@ -134,6 +134,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-zinc-950 p-4 animate-fade-in">
       <Card className="w-full max-w-md bg-zinc-900 border-zinc-800 hover-lift animate-scale-in">
         <CardHeader className="space-y-1">
+          <CardTitle className="text-4xl font-bold text-center text-white animate-slide-in">PingMe</CardTitle>
           <CardTitle className="text-2xl font-bold text-center text-white animate-slide-in">Login</CardTitle>
           <CardDescription className="text-center text-zinc-400 animate-slide-in" style={{ animationDelay: "0.1s" }}>
             Entre na sua conta para continuar
