@@ -327,10 +327,18 @@ export default function HomePage() {
         <div className="max-w-2xl mx-auto space-y-6">
           {/* Botão de Criar Post */}
           <Card className="bg-zinc-900 border-zinc-800 hover-lift animate-slide-in">
-            <CardContent className="p-4">
+            <CardContent className="p-4 flex items-center gap-2">
+              <Avatar
+                className="cursor-pointer hover-scale transition-transform-smooth"
+              >
+                <AvatarImage src={user?.fotoPerfil || "/placeholder.svg"} alt={user?.fotoPerfil} />
+                <AvatarFallback className="bg-zinc-700">
+                  <User className="h-4 w-4 text-zinc-300" />
+                </AvatarFallback>
+              </Avatar>
               <Button
                 onClick={openCreateModal}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white btn-animate transition-all-smooth"
+                className="w-full bg-blue-800 hover:bg-blue-700 text-white btn-animate transition-all-smooth rounded-3xl"
               >
                 <Plus className="mr-2 h-4 w-4 transition-transform-smooth group-hover:rotate-90" />
                 Criar nova postagem
