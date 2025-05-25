@@ -105,7 +105,7 @@ export default function HomePage() {
 
   const handleCreateOrUpdatePost = async () => {
     setCreating(true)
-    const postData = { titulo, conteudo, tags, usuarioId: userId, foto }
+    const postData = { titulo, conteudo, tags, usuario: user, foto }
 
     try {
       if (editingPost) {
@@ -248,6 +248,8 @@ export default function HomePage() {
       post.tags.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
+  console.log("Posts:", filteredPosts)
+
   if (loading) {
     return (
       <div className="min-h-screen bg-zinc-950">
@@ -360,7 +362,7 @@ export default function HomePage() {
                       className="cursor-pointer hover-scale transition-transform-smooth"
                       onClick={() => router.push(`/perfil/${post.usuario.id}`)}
                     >
-                      <AvatarImage src={post.usuario.fotoPerfil || "/placeholder.svg"} alt={post.usuario.name} />
+                      <AvatarImage src={post.usuario?.fotoPerfil || "/placeholder.svg"} alt={post.usuario?.name} />
                       <AvatarFallback className="bg-zinc-700">
                         <User className="h-4 w-4 text-zinc-300" />
                       </AvatarFallback>
@@ -370,7 +372,7 @@ export default function HomePage() {
                         className="font-semibold text-blue-400 cursor-pointer hover:text-blue-300 hover:underline transition-colors-smooth"
                         onClick={() => router.push(`/perfil/${post.usuario.id}`)}
                       >
-                        {post.usuario.name}
+                        {post.usuario?.name}
                       </p>
                       <p className="text-sm text-zinc-400">
                         {formatDistanceToNow(new Date(post.data_criacao), {
@@ -392,7 +394,7 @@ export default function HomePage() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-zinc-800 border-zinc-700 animate-scale-in">
-                      {post.usuario.id === Number.parseInt(userId || "0") ? (
+                      {post.usuario?.id === Number.parseInt(userId || "0") ? (
                         <>
                           <DropdownMenuItem
                             onClick={() => openEditModal(post)}

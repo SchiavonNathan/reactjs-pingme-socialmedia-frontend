@@ -31,20 +31,15 @@ export default function CadastroPage() {
     setError("")
 
     try {
-      // Simular delay de rede
       await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      if (name.trim() && email.trim() && password.trim()) {
-        alert("Cadastro bem-sucedido! Use as credenciais: admin@teste.com / 123456 para fazer login.")
-        router.push("/")
-        return
-      }
 
       const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       })
+
+      console.log("Response status:", response)
 
       if (response.ok) {
         alert("Cadastro bem-sucedido!")
@@ -53,8 +48,7 @@ export default function CadastroPage() {
         setError("Erro ao cadastrar. Tente novamente.")
       }
     } catch (error) {
-      alert("Cadastro simulado com sucesso! Use as credenciais: admin@teste.com / 123456 para fazer login.")
-      router.push("/")
+      console.error("Erro:", error)
     } finally {
       setLoading(false)
     }
